@@ -22,8 +22,7 @@ VALOR:
  STRING{ $$ = $1; }
  |NUM{ $$ = $1; }
  |NUM PONTO NUM{  $$ = $1;  }
- |AC FC{ $$ = $1;  }
-
+ |AC FC{$$=$1;}
  ;
 
 ITEM:
@@ -32,14 +31,15 @@ STRING DP VALOR{ $$ = $1;}
 
 LISTA:
 ITEM VIR ITEM{ $$ = $1; }
-|VALOR VIR VALOR{   $$ = $1; }
-|VETOR VIR VETOR{ $$ = $1; }
+|VALOR VIR VALOR{  $$ = $1; }
+|VALOR VIR VALOR VIR{  $$ = $1; }
+|VETOR VIR VETOR{  $$ = $1; }
 ;
 
 VETOR:
 AV LISTA FV{ $$ = $1; }
 |AV VETOR FV { $$ = $1; }
-|AV LISTA VIR VETOR { $$ = $1; }
+|AV LISTA VETOR { $$ = $1; }
 |AV VALOR VIR VETOR FV FV{ $$ = $1; }
 |
 ;
